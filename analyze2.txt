@@ -1,0 +1,103 @@
+﻿Analyzing gig_wizard_screen.dart...                             
+
+   info - Parameter 'key' could be a super parameter - lib\screens\professional\gig_wizard_screen.dart:8:9 - use_super_parameters
+   info - Invalid use of a private type in a public API - lib\screens\professional\gig_wizard_screen.dart:11:3 - library_private_types_in_public_api
+warning - The declaration '_uploadImage' isn't referenced - lib\screens\professional\gig_wizard_screen.dart:233:16 - unused_element
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:239:28 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:245:28 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:250:28 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:252:28 - use_build_context_synchronously
+  error - The named parameter 'color' isn't defined - lib\screens\professional\gig_wizard_screen.dart:272:13 - undefined_named_parameter
+  error - The named parameter 'color' isn't defined - lib\screens\professional\gig_wizard_screen.dart:299:15 - undefined_named_parameter
+  error - The prefix 'SizedBox' can't be used here because it's shadowed by a local declaration - lib\screens\professional\gig_wizard_screen.dart:305:31 - prefix_shadowed_by_local_declaration
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:315:52 - creation_with_non_type
+  error - The prefix 'SizedBox' can't be used here because it's shadowed by a local declaration - lib\screens\professional\gig_wizard_screen.dart:346:29 - prefix_shadowed_by_local_declaration
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:370:46 - creation_with_non_type
+  error - The named parameter 'margin' isn't defined - lib\screens\professional\gig_wizard_screen.dart:386:13 - undefined_named_parameter
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:399:23 - creation_with_non_type
+  error - The named parameter 'width' isn't defined - lib\screens\professional\gig_wizard_screen.dart:409:23 - undefined_named_parameter
+   info - Unnecessary use of 'toList' in a spread - lib\screens\professional\gig_wizard_screen.dart:415:20 - unnecessary_to_list_in_spreads
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:420:15 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:422:15 - creation_with_non_type
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\professional\gig_wizard_screen.dart:424:11 - deprecated_member_use
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:431:15 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:438:45 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:453:19 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:461:15 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:495:21 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:508:51 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:513:15 - creation_with_non_type
+  error - The named parameter 'margin' isn't defined - lib\screens\professional\gig_wizard_screen.dart:539:7 - undefined_named_parameter
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:553:23 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:564:23 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:572:23 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:574:23 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:583:23 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:591:33 - creation_with_non_type
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\professional\gig_wizard_screen.dart:593:29 - deprecated_member_use
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:601:27 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:607:33 - creation_with_non_type
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\professional\gig_wizard_screen.dart:609:29 - deprecated_member_use
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:647:52 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:659:15 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:661:15 - creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:669:45 - creation_with_non_type
+  error - The named parameter 'margin' isn't defined - lib\screens\professional\gig_wizard_screen.dart:680:13 - undefined_named_parameter
+  error - Expected to find ']' - lib\screens\professional\gig_wizard_screen.dart:689:112 - expected_token
+  error - Too many positional arguments: 0 expected, but 2 found - lib\screens\professional\gig_wizard_screen.dart:693:17 - extra_positional_arguments
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:693:23 - creation_with_non_type
+  error - Expected to find ';' - lib\screens\professional\gig_wizard_screen.dart:694:94 - expected_token
+  error - Expected to find ')' - lib\screens\professional\gig_wizard_screen.dart:695:15 - expected_token
+  error - Expected to find '}' - lib\screens\professional\gig_wizard_screen.dart:695:15 - expected_token
+  error - Expected to find ';' - lib\screens\professional\gig_wizard_screen.dart:696:13 - expected_token
+warning - Dead code - lib\screens\professional\gig_wizard_screen.dart:696:14 - dead_code
+  error - Expected an identifier - lib\screens\professional\gig_wizard_screen.dart:696:14 - missing_identifier
+  error - Expected to find ';' - lib\screens\professional\gig_wizard_screen.dart:696:14 - expected_token
+  error - Unexpected text ';' - lib\screens\professional\gig_wizard_screen.dart:696:14 - unexpected_token
+  error - Expected an identifier - lib\screens\professional\gig_wizard_screen.dart:697:11 - missing_identifier
+  error - Unexpected text ';' - lib\screens\professional\gig_wizard_screen.dart:697:11 - unexpected_token
+   info - Unnecessary empty statement - lib\screens\professional\gig_wizard_screen.dart:697:12 - empty_statements
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:698:10 - expected_class_member
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:698:11 - expected_class_member
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:698:12 - strict_top_level_inference
+  error - A function body must be provided - lib\screens\professional\gig_wizard_screen.dart:698:20 - missing_function_body
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:698:20 - expected_class_member
+  error - Getters, setters and methods can't be declared to be 'const' - lib\screens\professional\gig_wizard_screen.dart:700:9 - const_method
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:700:15 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier - lib\screens\professional\gig_wizard_screen.dart:700:15 - non_constant_identifier_names
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:700:24 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\screens\professional\gig_wizard_screen.dart:700:30 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\screens\professional\gig_wizard_screen.dart:700:30 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\screens\professional\gig_wizard_screen.dart:700:35 - missing_function_body
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:700:35 - expected_class_member
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:701:9 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier - lib\screens\professional\gig_wizard_screen.dart:701:9 - non_constant_identifier_names
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:702:11 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\screens\professional\gig_wizard_screen.dart:702:18 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\screens\professional\gig_wizard_screen.dart:702:18 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:703:11 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\screens\professional\gig_wizard_screen.dart:703:21 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\screens\professional\gig_wizard_screen.dart:703:21 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\screens\professional\gig_wizard_screen.dart:703:23 - non_constant_default_value
+   info - Missing type annotation - lib\screens\professional\gig_wizard_screen.dart:704:11 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\screens\professional\gig_wizard_screen.dart:704:16 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\screens\professional\gig_wizard_screen.dart:704:16 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\screens\professional\gig_wizard_screen.dart:704:18 - non_constant_default_value
+  error - Undefined name 'inputDecoration' - lib\screens\professional\gig_wizard_screen.dart:708:29 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:710:21 - creation_with_non_type
+  error - Undefined name 'inputDecoration' - lib\screens\professional\gig_wizard_screen.dart:714:29 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\screens\professional\gig_wizard_screen.dart:716:21 - creation_with_non_type
+  error - The named parameter 'width' isn't defined - lib\screens\professional\gig_wizard_screen.dart:718:17 - undefined_named_parameter
+  error - The named parameter 'child' isn't defined - lib\screens\professional\gig_wizard_screen.dart:719:17 - undefined_named_parameter
+  error - Undefined name 'isDark' - lib\screens\professional\gig_wizard_screen.dart:731:68 - undefined_identifier
+  error - Undefined name 'isDark' - lib\screens\professional\gig_wizard_screen.dart:731:123 - undefined_identifier
+  error - A function body must be provided - lib\screens\professional\gig_wizard_screen.dart:739:7 - missing_function_body
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:739:7 - expected_class_member
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:739:8 - expected_class_member
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:740:5 - expected_class_member
+  error - Expected a class member - lib\screens\professional\gig_wizard_screen.dart:740:6 - expected_class_member
+  error - Undefined name '_form' - lib\screens\professional\gig_wizard_screen.dart:745:21 - undefined_identifier
+  error - The function 'setState' isn't defined - lib\screens\professional\gig_wizard_screen.dart:774:36 - undefined_function
+  error - Undefined name '_uploadImage' - lib\screens\professional\gig_wizard_screen.dart:786:25 - undefined_identifier
+  error - Expected a method, getter, setter or operator declaration - lib\screens\professional\gig_wizard_screen.dart:833:1 - expected_executable
+

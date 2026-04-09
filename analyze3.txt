@@ -1,0 +1,15 @@
+﻿Analyzing gig_wizard_screen.dart...                             
+
+warning - Unused import: 'dart:io' - lib\screens\professional\gig_wizard_screen.dart:1:8 - unused_import
+   info - Parameter 'key' could be a super parameter - lib\screens\professional\gig_wizard_screen.dart:8:9 - use_super_parameters
+   info - Invalid use of a private type in a public API - lib\screens\professional\gig_wizard_screen.dart:11:3 - library_private_types_in_public_api
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:239:28 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:245:28 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:250:28 - use_build_context_synchronously
+   info - Don't use 'BuildContext's across async gaps - lib\screens\professional\gig_wizard_screen.dart:252:28 - use_build_context_synchronously
+   info - Unnecessary use of 'toList' in a spread - lib\screens\professional\gig_wizard_screen.dart:415:20 - unnecessary_to_list_in_spreads
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\professional\gig_wizard_screen.dart:424:11 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\professional\gig_wizard_screen.dart:593:29 - deprecated_member_use
+   info - 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre - lib\screens\professional\gig_wizard_screen.dart:609:29 - deprecated_member_use
+   info - Unnecessary use of 'toList' in a spread - lib\screens\professional\gig_wizard_screen.dart:698:12 - unnecessary_to_list_in_spreads
+

@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "962027557216",
+    "project_id": "starjd-55109",
+    "storage_bucket": "starjd-55109.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962027557216:android:5aa5b7bc2165f1445d4e05",
+        "android_client_info": {
+          "package_name": "com.example.starjd_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962027557216-aofblam7q8gj8so6al3b3pslusli271v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.starjd_app",
+            "certificate_hash": "24767a8c676f6af1b258eae117dc2b6f5699416c"
+          }
+        },
+        {
+          "client_id": "962027557216-333bnbm5cr28qtjn3i17fmoonuen0qru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBogF9iLUdH66OloOf57WLwvUbKLzl7jPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962027557216-333bnbm5cr28qtjn3i17fmoonuen0qru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962027557216:android:99b77ff523c1ca185d4e05",
+        "android_client_info": {
+          "package_name": "com.starjd.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962027557216-5lr8epbnv7oepcjl1ueb50mcrq20a6dt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.starjd.app",
+            "certificate_hash": "cc0013daa7bf0dd77ff9c8a2b3184fa1dfc7976e"
+          }
+        },
+        {
+          "client_id": "962027557216-oiq0uqh8kfhcdgj8roieerfm3cs6jama.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.starjd.app",
+            "certificate_hash": "24767a8c676f6af1b258eae117dc2b6f5699416c"
+          }
+        },
+        {
+          "client_id": "962027557216-333bnbm5cr28qtjn3i17fmoonuen0qru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBogF9iLUdH66OloOf57WLwvUbKLzl7jPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962027557216-333bnbm5cr28qtjn3i17fmoonuen0qru.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.starjd.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

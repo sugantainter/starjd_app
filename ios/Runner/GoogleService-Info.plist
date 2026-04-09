@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBdrGDSmDtxICfPPaGFeBFwDXPyM7pm7NE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>962027557216</string>
+	<key>BUNDLE_ID</key>
+	<string>com.starjd.app</string>
+	<key>PROJECT_ID</key>
+	<string>starjd-55109</string>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:962027557216:ios:dc409c68d8eca9325d4e05</string>
+</dict>
+</plist>
