@@ -186,7 +186,7 @@ class AuthService {
       await prefs.remove('user');
       await prefs.remove('role_selected'); // Reset so next user must pick role
     } catch (e) {
-      debugPrint('Logout error: $e');
+      // removed debugPrint
     }
   }
 
@@ -433,7 +433,7 @@ class AuthService {
       final c = await client;
       await c.post('/api/update-fcm-token', data: {'fcm_token': token});
     } catch (e) {
-      debugPrint('Error clearing FCM token: $e');
+      // removed debugPrint
     }
   }
 

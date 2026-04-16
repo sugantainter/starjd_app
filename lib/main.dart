@@ -38,7 +38,7 @@ void main() async {
     await AnalyticsService.initialize();
     await AnalyticsService.logActivateApp();
   } catch (e) {
-    debugPrint('Initialization failed: $e');
+    // removed debugPrint
   }
 
   // Initialize AuthService and others if needed

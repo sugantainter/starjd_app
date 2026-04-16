@@ -13,7 +13,7 @@ class CollaborationService {
       }
       return [];
     } catch (e) {
-      print('Error fetching collaborations: $e');
+      // removed print
       return [];
     }
   }
@@ -146,7 +146,7 @@ class CollaborationService {
       }
       return [];
     } catch (e) {
-      print('Error fetching bank accounts: $e');
+      // removed print
       return [];
     }
   }

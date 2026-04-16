@@ -11,7 +11,7 @@ class PaymentService {
         return res.data;
       }
     } catch (e) {
-      debugPrint('PaymentService getPlans Error: $e');
+      // removed debugPrint
       throw Exception('Failed to load plans: $e');
     }
     return [];
@@ -27,7 +27,7 @@ class PaymentService {
         return res.data;
       }
     } catch (e) {
-      debugPrint('PaymentService getAvailableCoupons Error: $e');
+      // removed debugPrint
     }
     return [];
   }

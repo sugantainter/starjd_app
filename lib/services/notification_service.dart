@@ -29,7 +29,7 @@ class NotificationService {
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      if (kDebugMode) print('User granted notification permission');
+      // removed print
     }
 
     // 2. Initialize Local Notifications for Foreground
@@ -64,7 +64,7 @@ class NotificationService {
 
     // 3. Handle Foreground Messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if (kDebugMode) print('Got a message whilst in the foreground!');
+      // removed print
       _messageStreamController.add(message);
       
       // Optionally suppress notification if already in this chat
@@ -97,9 +97,9 @@ class NotificationService {
         '/api/update-fcm-token',
         data: {'fcm_token': token},
       );
-      if (kDebugMode) print('FCM Token uploaded: $token');
+      // removed print
     } catch (e) {
-      if (kDebugMode) print('Error uploading FCM token: $e');
+      // removed print
     }
   }
 

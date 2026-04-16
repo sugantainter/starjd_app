@@ -10,9 +10,9 @@ class AnalyticsService {
       await _facebookAppEvents.setAutoLogAppEventsEnabled(true);
       await _facebookAppEvents.setAdvertiserTracking(enabled: true, collectId: true);
       
-      debugPrint('Meta Analytics initialized successfully');
+      // removed debugPrint
     } catch (e) {
-      debugPrint('Meta Analytics initialization failed: $e');
+      // removed debugPrint
     }
   }
 
@@ -25,9 +25,9 @@ class AnalyticsService {
         name: name,
         parameters: parameters,
       );
-      debugPrint('Logged event: $name with parameters: $parameters');
+      // removed debugPrint
     } catch (e) {
-      debugPrint('Failed to log event $name: $e');
+      // removed debugPrint
     }
   }
 
@@ -42,27 +42,27 @@ class AnalyticsService {
         currency: currency,
         parameters: parameters,
       );
-      debugPrint('Logged purchase: $amount $currency');
+      // removed debugPrint
     } catch (e) {
-      debugPrint('Failed to log purchase: $e');
+      // removed debugPrint
     }
   }
 
   static Future<void> logActivateApp() async {
     try {
       await _facebookAppEvents.activateApp();
-      debugPrint('Logged app activation');
+      // removed debugPrint
     } catch (e) {
-      debugPrint('Failed to log app activation: $e');
+      // removed debugPrint
     }
   }
   
   static Future<void> setUserID(String id) async {
     try {
       await _facebookAppEvents.setUserID(id);
-      debugPrint('Set User ID: $id');
+      // removed debugPrint
     } catch (e) {
-      debugPrint('Failed to set User ID: $e');
+      // removed debugPrint
     }
   }
 }

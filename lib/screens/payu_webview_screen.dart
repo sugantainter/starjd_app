@@ -87,7 +87,7 @@ class _PayUWebViewScreenState extends State<PayUWebViewScreen> {
                   await launchUrl(uri, mode: LaunchMode.externalApplication);
                 }
               } catch (e) {
-                debugPrint('Error launching payment app: $e');
+                // removed debugPrint
               }
               return NavigationDecision.prevent;
             }
