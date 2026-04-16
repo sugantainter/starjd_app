@@ -45,8 +45,8 @@ dependencies:
   webview_flutter: ^4.13.1
   envied: ^1.3.3
   google_sign_in: ^6.2.2
-  flutter_facebook_auth: ^6.0.4
-  facebook_app_events: any
+  flutter_facebook_auth: ^7.1.6
+  facebook_app_events: ^0.27.0
   flutter_html: ^3.0.0
   youtube_player_flutter: ^9.1.3
   firebase_core: ^4.5.0
