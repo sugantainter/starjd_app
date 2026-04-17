@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
         
         if (result.status == LoginStatus.success) {
-          token = result.accessToken?.token;
+          token = result.accessToken?.tokenString;
         } else if (result.status == LoginStatus.cancelled) {
           setState(() { _isLoading = false; });
           return; // User cancelled — no error needed

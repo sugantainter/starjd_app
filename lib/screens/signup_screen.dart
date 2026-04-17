@@ -94,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
         );
         
         if (result.status == LoginStatus.success) {
-          token = result.accessToken?.token;
+          token = result.accessToken?.tokenString;
         } else {
           if (mounted) setState(() { _isLoading = false; });
           return; 
