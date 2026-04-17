@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../services/dashboard_service.dart';
 import 'creator_analytics_detail_screen.dart';
+import 'social_auth_webview.dart';
 
 class CreatorSocialAccountsScreen extends StatefulWidget {
   const CreatorSocialAccountsScreen({super.key});
@@ -32,80 +34,52 @@ class _CreatorSocialAccountsScreenState extends State<CreatorSocialAccountsScree
     }
   }
 
-  Future<void> _showConnectDialog(dynamic account) async {
-    final usernameController = TextEditingController(text: account['username'] ?? '');
-    final urlController = TextEditingController(text: account['profile_url'] ?? '');
-    final followersController = TextEditingController(text: account['followers_count']?.toString() ?? '');
+  Future<void> _connectSocial(String platform) async {
+    setState(() => _isLoading = true);
+    final res = await CreatorDashboardService.getSocialConnectUrl(platform);
+    setState(() => _isLoading = false);
 
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Row(
-          children: [
-            _buildPlatformIcon(account['platform'], size: 28),
-            const SizedBox(width: 12),
-            Text('Connect ${account['platform'].toString().toUpperCase()}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ],
-        ),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: usernameController,
-                decoration: _inputDecoration('Username / Handle', hint: 'e.g. @johndoe'),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: urlController,
-                decoration: _inputDecoration('Profile URL', hint: 'https://...'),
-                keyboardType: TextInputType.url,
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: followersController,
-                decoration: _inputDecoration('Followers Count', hint: 'e.g. 5000'),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Enter your details manualy to showcase on your profile.',
-                style: TextStyle(fontSize: 11, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          ElevatedButton(
-            onPressed: () async {
-              final data = {
-                'platform': account['platform'],
-                'username': usernameController.text.trim(),
-                'profile_url': urlController.text.trim(),
-                'followers_count': int.tryParse(followersController.text) ?? 0,
-              };
-              final res = await CreatorDashboardService.syncSocialAccount(data);
-              if (res['success']) {
-                if (mounted) Navigator.pop(context, true);
-              }
+    if (res['success']) {
+      var data = res['data'];
+      if (data is String) {
+        try {
+          data = jsonDecode(data);
+        } catch (e) {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Invalid server response: ${data.length > 50 ? data.substring(0, 50) : data}')),
+          );
+          return;
+        }
+      }
+      final url = data['url'];
+      if (url == null) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No URL returned from server.')),
+        );
+        return;
+      }
+      if (!mounted) return;
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => SocialAuthWebview(
+            providerUrl: url,
+            title: 'Connect ${platform.toUpperCase()}',
+            onSuccess: () {
+              Navigator.pop(context);
+              _loadData();
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFE63946),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-            child: const Text('Save Changes'),
           ),
-        ],
-      ),
-    );
-
-    if (!mounted) return;
-
-    if (result == true) {
-      _loadData();
+        ),
+      );
+    } else {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(res['message'] ?? 'Failed to initiate connection')),
+      );
     }
   }
 
@@ -214,7 +188,7 @@ class _CreatorSocialAccountsScreenState extends State<CreatorSocialAccountsScree
               ),
               const SizedBox(width: 8),
               ElevatedButton(
-                onPressed: () => _showConnectDialog(acc),
+                onPressed: () => _connectSocial(platform),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isConnected ? Colors.grey.shade100 : const Color(0xFFE63946),
                   foregroundColor: isConnected ? Colors.black87 : Colors.white,
@@ -223,7 +197,7 @@ class _CreatorSocialAccountsScreenState extends State<CreatorSocialAccountsScree
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   minimumSize: const Size(80, 36),
                 ),
-                child: Text(isConnected ? 'Edit' : 'Connect', style: const TextStyle(fontSize: 13)),
+                child: Text(isConnected ? 'Reconnect' : 'Connect', style: const TextStyle(fontSize: 13)),
               ),
             ],
           ),

@@ -93,6 +93,16 @@ class CreatorDashboardService {
     }
   }
 
+  static Future<Map<String, dynamic>> getSocialConnectUrl(String platform) async {
+    try {
+      final c = await AuthService.client;
+      final response = await c.get('/api/creator/social-accounts/$platform/connect-url');
+      return {'success': true, 'data': response.data};
+    } catch (e) {
+      return {'success': false, 'message': e.toString()};
+    }
+  }
+
   static Future<Map<String, dynamic>> syncSocialAccount(Map<String, dynamic> data) async {
     try {
       final c = await AuthService.client;
