@@ -855,7 +855,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
                 SizedBox(
-                  height: 170,
+                  height: 180,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -931,7 +931,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
                 SizedBox(
-                  height: 280,
+                  height: 340,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -973,6 +973,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Text(
                                         blog.category!.toUpperCase(),
                                         style: TextStyle(fontSize: 10, color: theme.primaryColor, fontWeight: FontWeight.w800),
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     const SizedBox(height: 6),
                                     Text(

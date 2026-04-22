@@ -157,9 +157,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           
           // Re-validate selection after fetch
           final profile = widget.userData['creator_profile'] ?? {};
-          if (profile['category'] != null && _categories.contains(profile['category'])) {
-            _selectedCategory = profile['category'];
+          final currentCategory = profile['category'];
+          if (currentCategory != null) {
+             // If currentCategory is a map (legacy/edge case), try to extract name
+             String categoryName = currentCategory is Map ? (currentCategory['name'] ?? currentCategory.toString()) : currentCategory.toString();
+             if (_categories.contains(categoryName)) {
+               _selectedCategory = categoryName;
+             }
           }
+
           if (profile['gender'] != null) {
              final lowerGenders = _genders.map((e) => e.toLowerCase().replaceAll(' ', '_').replaceAll('-', '_')).toList();
              final idx = lowerGenders.indexOf(profile['gender']);
@@ -557,11 +563,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         DropdownButtonFormField<String>(
           value: sanitizedValue,
           isExpanded: true,
-          dropdownColor: theme.cardTheme.color,
-          style: TextStyle(color: theme.textTheme.bodyLarge?.color),
+          icon: const Icon(Icons.expand_more_rounded, size: 22, color: Colors.grey),
+          dropdownColor: isDark ? const Color(0xFF1F2937) : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          style: TextStyle(color: theme.textTheme.bodyLarge?.color, fontSize: 15),
           hint: Text(
             items.isEmpty ? 'Loading $label...' : 'Select $label',
-            style: TextStyle(color: theme.textTheme.bodySmall?.color),
+            style: TextStyle(color: theme.textTheme.bodySmall?.color, fontSize: 15),
           ),
           decoration: InputDecoration(
             filled: true,
@@ -569,21 +577,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12), 
-              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade300)
+              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade200)
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12), 
-              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade300)
+              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade200)
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12), 
-              borderSide: const BorderSide(color: Color(0xFFE63946), width: 2)
+              borderSide: const BorderSide(color: Color(0xFFE63946), width: 1.5)
             ),
           ),
           items: items.map((String item) {
             return DropdownMenuItem<String>(
               value: item,
-              child: Text(item),
+              child: Text(item, style: const TextStyle(fontWeight: FontWeight.w400)),
             );
           }).toList(),
           onChanged: items.isEmpty ? null : onChanged,
@@ -608,11 +616,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         DropdownButtonFormField<int>(
           value: sanitizedValue,
           isExpanded: true,
-          dropdownColor: theme.cardTheme.color,
-          style: TextStyle(color: theme.textTheme.bodyLarge?.color),
+          icon: const Icon(Icons.expand_more_rounded, size: 22, color: Colors.grey),
+          dropdownColor: isDark ? const Color(0xFF1F2937) : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          style: TextStyle(color: theme.textTheme.bodyLarge?.color, fontSize: 15),
           hint: Text(
             isLoading ? 'Loading...' : (hint ?? 'Select $label'),
-            style: TextStyle(color: theme.textTheme.bodySmall?.color),
+            style: TextStyle(color: theme.textTheme.bodySmall?.color, fontSize: 15),
           ),
           decoration: InputDecoration(
             filled: true,
@@ -620,21 +630,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12), 
-              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade300)
+              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade200)
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12), 
-              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade300)
+              borderSide: BorderSide(color: isDark ? Colors.white10 : Colors.grey.shade200)
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12), 
-              borderSide: const BorderSide(color: Color(0xFFE63946), width: 2)
+              borderSide: const BorderSide(color: Color(0xFFE63946), width: 1.5)
             ),
           ),
           items: items.map((dynamic item) {
             return DropdownMenuItem<int>(
               value: item['id'],
-              child: Text(item['name']),
+              child: Text(item['name'], style: const TextStyle(fontWeight: FontWeight.w400)),
             );
           }).toList(),
           onChanged: isLoading ? null : onChanged,

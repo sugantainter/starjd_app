@@ -259,7 +259,14 @@ class CreatorFilters {
   factory CreatorFilters.fromJson(Map<String, dynamic> json) {
     List<String> list(String key) {
       final val = json[key];
-      if (val is List) return val.map((e) => e.toString()).toList();
+      if (val is List) {
+        return val.map((e) {
+          if (e is Map && e.containsKey('name')) {
+            return e['name'].toString();
+          }
+          return e.toString();
+        }).toList();
+      }
       if (val is Map) return val.values.map((e) => e.toString()).toList();
       return [];
     }
