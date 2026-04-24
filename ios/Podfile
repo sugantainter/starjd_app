@@ -1,6 +1,7 @@
 platform :ios, '15.0'
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+ENV['COCOAPODS_PARALLEL_CODE_SIGN'] = 'false'
 
 project 'Runner', {
   'Debug' => :debug,
@@ -40,6 +41,7 @@ post_install do |installer|
     
     # Configuration for permission_handler
     target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
       config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
         '$(inherited)'
       ]

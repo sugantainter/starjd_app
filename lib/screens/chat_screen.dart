@@ -18,6 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
   List<Map<String, dynamic>> _chatHistory = [];
   bool _isLoading = true;
   StreamSubscription? _messageSubscription;
+  Timer? _pollingTimer;
 
   @override
   void initState() {
@@ -25,6 +26,15 @@ class _ChatScreenState extends State<ChatScreen> {
     NotificationService.currentChatId = widget.contact['id'];
     _loadMessages();
     _startRealtimeListener();
+    _startPolling();
+  }
+
+  void _startPolling() {
+    _pollingTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (mounted) {
+        _loadMessages(showLoading: false);
+      }
+    });
   }
 
   void _startRealtimeListener() {
@@ -54,17 +64,29 @@ class _ChatScreenState extends State<ChatScreen> {
     return '$hour:$minute $amPm';
   }
 
-  Future<void> _loadMessages() async {
-    setState(() => _isLoading = true);
+  Future<void> _loadMessages({bool showLoading = true}) async {
+    if (showLoading && mounted) {
+      setState(() => _isLoading = true);
+    }
+    
     try {
       final data = await ChatService.getMessages(widget.contact['id']);
-      setState(() {
-        _chatHistory = data;
-        _isLoading = false;
-      });
-      _scrollToBottom();
+      if (mounted) {
+        // Only update and scroll if the history has changed
+        if (data.length != _chatHistory.length) {
+          setState(() {
+            _chatHistory = data;
+            _isLoading = false;
+          });
+          _scrollToBottom();
+        } else if (showLoading) {
+          setState(() => _isLoading = false);
+        }
+      }
     } catch (e) {
-      setState(() => _isLoading = false);
+      if (showLoading && mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 
@@ -84,6 +106,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void dispose() {
     NotificationService.currentChatId = null;
     _messageSubscription?.cancel();
+    _pollingTimer?.cancel();
     _messageController.dispose();
     _scrollController.dispose();
     super.dispose();

@@ -25,12 +25,22 @@ class _MessagesScreenState extends State<MessagesScreen> {
   final TextEditingController _searchController = TextEditingController();
   bool _isLoading = true;
   StreamSubscription? _messageSubscription;
+  Timer? _pollingTimer;
 
   @override
   void initState() {
     super.initState();
     _loadConversations();
     _startMessageListener();
+    _startPolling();
+  }
+
+  void _startPolling() {
+    _pollingTimer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        _loadConversations(showLoading: false);
+      }
+    });
   }
 
   void _startMessageListener() {
@@ -65,14 +75,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
           _conversations.removeAt(existingIndex);
           _conversations.insert(0, conv);
         } else {
-          _loadConversations();
+          _loadConversations(showLoading: false);
         }
       });
     }
   }
 
-  Future<void> _loadConversations() async {
-    if (mounted) setState(() => _isLoading = true);
+  Future<void> _loadConversations({bool showLoading = true}) async {
+    if (showLoading && mounted) setState(() => _isLoading = true);
     try {
       final data = await ChatService.getConversations();
       if (mounted) {
@@ -82,7 +92,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         });
       }
     } catch (e) {
-      if (mounted) {
+      if (showLoading && mounted) {
         setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to load messages')),
@@ -93,6 +103,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
   @override
   void dispose() {
+    _pollingTimer?.cancel();
     _messageSubscription?.cancel();
     _searchController.dispose();
     super.dispose();
