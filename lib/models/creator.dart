@@ -78,7 +78,7 @@ class CreatorPackage {
       name: json['name'] ?? '',
       price: _toDouble(json['price']) ?? 0.0,
       description: json['description'],
-      category: json['category'],
+      category: json['category'] is Map ? json['category']['name']?.toString() : json['category']?.toString(),
     );
   }
 }
@@ -169,7 +169,7 @@ class Creator {
       avatarUrl: json['avatar_url'],
       location: json['location'],
       tagline: json['tagline'],
-      category: json['category'],
+      category: json['category'] is Map ? json['category']['name']?.toString() : json['category']?.toString(),
       gender: json['gender'],
       language: json['language'],
       minRate: _toDouble(json['min_rate']),

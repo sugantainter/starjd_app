@@ -104,7 +104,7 @@ class CreatorCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        creator['category'],
+                        creator['category'] is Map ? creator['category']['name']?.toString() ?? '' : creator['category']?.toString() ?? '',
                         style: const TextStyle(color: Colors.black87, fontSize: 9, fontWeight: FontWeight.bold),
                       ),
                     ),
