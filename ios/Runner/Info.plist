@@ -86,6 +86,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe.apps.googleusercontent.com</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs access to the camera to take profile and cover photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

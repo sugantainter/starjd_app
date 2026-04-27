@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
@@ -154,7 +155,16 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           }
           return;
+          }
         }
+      } else if (provider == 'apple') {
+        final appleCredential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+        token = appleCredential.identityToken;
       }
       
       if (token != null) {
@@ -411,6 +421,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
+                
+                if (Theme.of(context).platform == TargetPlatform.iOS) ...[
+                  const SizedBox(height: 16),
+                  SignInWithAppleButton(
+                    onPressed: () => _handleSocialLogin('apple'),
+                    style: isDark ? SignInWithAppleButtonStyle.white : SignInWithAppleButtonStyle.black,
+                  ),
+                ],
                 
                 const SizedBox(height: 40),
                 
