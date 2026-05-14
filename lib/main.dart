@@ -85,7 +85,6 @@ class StarJDApp extends StatelessWidget {
                 showLater: false,
                 upgrader: Upgrader(
                   durationUntilAlertAgain: const Duration(seconds: 0),
-                  canDismissDialog: false,
                 ),
                 child: child!,
               ),
