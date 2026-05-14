@@ -9,6 +9,8 @@ import 'role_selection_screen.dart';
 import 'creator_onboarding_screen.dart';
 import 'brand_onboarding_screen.dart';
 import '../services/analytics_service.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'dart:io' show Platform;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -155,14 +157,25 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           return;
         }
-      }
-      
-      if (token != null) {
-        final res = await AuthService.socialLogin(provider, token);
+      } else if (provider == 'apple') {
+        final credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+          token = credential.identityToken;
+          print("APPLE LOGIN: Success! Token retrieved.");
+        }
+        
+        if (token != null) {
+          print("SOCIAL LOGIN: Sending $provider token to backend...");
+          final res = await AuthService.socialLogin(provider, token);
         
         if (mounted) {
           setState(() { _isLoading = false; });
           if (res['success']) {
+            print("SOCIAL LOGIN: Backend success for $provider");
             final user = res['data']['user'];
             final isNewUser = res['data']['is_new_user'] == true;
             
@@ -411,6 +424,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
+                
+                if (Platform.isIOS) ...[
+                  const SizedBox(height: 16),
+                  SignInWithAppleButton(
+                    onPressed: () => _handleSocialLogin('apple'),
+                    style: isDark ? SignInWithAppleButtonStyle.white : SignInWithAppleButtonStyle.black,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ],
                 
                 const SizedBox(height: 40),
                 
