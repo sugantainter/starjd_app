@@ -78,15 +78,17 @@ class StarJDApp extends StatelessWidget {
             Locale('en', ''),
           ],
           builder: (context, child) {
-            return UpgradeAlert(
-              showIgnore: false,
-              showLater: false,
-              upgrader: Upgrader(
-                durationUntilAlertAgain: const Duration(seconds: 0),
-                shouldPopScope: () => false,
-                canDismissDialog: false,
+            return PopScope(
+              canPop: false,
+              child: UpgradeAlert(
+                showIgnore: false,
+                showLater: false,
+                upgrader: Upgrader(
+                  durationUntilAlertAgain: const Duration(seconds: 0),
+                  canDismissDialog: false,
+                ),
+                child: child!,
               ),
-              child: child!,
             );
           },
           home: const AuthCheckScreen(),
