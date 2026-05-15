@@ -6,6 +6,8 @@ import '../services/auth_service.dart';
 import 'role_selection_screen.dart';
 import 'creator_onboarding_screen.dart';
 import 'brand_onboarding_screen.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'dart:io' show Platform;
 import '../services/analytics_service.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -99,6 +101,14 @@ class _SignupScreenState extends State<SignupScreen> {
           if (mounted) setState(() { _isLoading = false; });
           return; 
         }
+      } else if (provider == 'apple') {
+        final credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+        token = credential.identityToken;
       }
       
       if (token != null) {
@@ -401,7 +411,17 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               
-              const SizedBox(height: 40),
+              const SizedBox(height: 32),
+              
+              if (Platform.isIOS) ...[
+                const SizedBox(height: 16),
+                SignInWithAppleButton(
+                  onPressed: () => _handleSocialSignup('apple'),
+                  style: isDark ? SignInWithAppleButtonStyle.white : SignInWithAppleButtonStyle.black,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                const SizedBox(height: 16),
+              ],
               
               // Login Link
               Row(
