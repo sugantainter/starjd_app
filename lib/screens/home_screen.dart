@@ -128,6 +128,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final size = MediaQuery.of(context).size;
+    final isTablet = size.width > 600;
 
     if (_isLoading) {
       return Scaffold(
@@ -141,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Image.asset(
           'assets/images/logo.png', 
-          height: 40,
+          height: isTablet ? 50 : 40,
           color: isDark ? Colors.white : null,
         ),
         centerTitle: true,
@@ -382,10 +384,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: RefreshIndicator(
-        onRefresh: _loadData,
-        color: const Color(0xFFE63946),
-        child: SingleChildScrollView(
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: isTablet ? 1000 : double.infinity),
+          child: RefreshIndicator(
+            onRefresh: _loadData,
+            color: const Color(0xFFE63946),
+            child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -590,11 +595,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: isTablet ? 6 : 4,
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 12,
-                          childAspectRatio: 0.75,
+                          childAspectRatio: isTablet ? 0.85 : 0.75,
                         ),
                         itemCount: _sections.categories.length,
                         itemBuilder: (context, index) {
@@ -1007,6 +1012,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     ),
+    ),
+    ),
   );
 }
 
@@ -1052,11 +1059,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBannerSlider() {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final isTablet = MediaQuery.of(context).size.width > 600;
     
     if (_sections.banners.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 180,
+      height: isTablet ? 280 : 180,
       child: PageView.builder(
         itemCount: _sections.banners.length,
         controller: PageController(viewportFraction: 0.9),
@@ -1167,6 +1175,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHeroButton(BuildContext context, {required String label, required Color color, IconData? icon, required VoidCallback onPressed}) {
+    final isTablet = MediaQuery.of(context).size.width > 600;
+
     return Expanded(
       child: InkWell(
         onTap: onPressed,
@@ -1181,11 +1191,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, color: color, size: 24),
+              Icon(icon, color: color, size: isTablet ? 32 : 24),
               const SizedBox(height: 8),
               Text(
                 label,
-                style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 12),
+                style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: isTablet ? 14 : 12),
               ),
             ],
           ),
@@ -1197,6 +1207,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildProfessionalHireGrid() {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final isTablet = MediaQuery.of(context).size.width > 600;
     
     final proCategories = [
       {'name': 'Graphic & Video Editors', 'image': 'assets/images/pro_categories/graphic_editor.png', 'slug': 'graphic-video-editors'},
@@ -1237,11 +1248,11 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: isTablet ? 6 : 4,
               mainAxisSpacing: 16,
               crossAxisSpacing: 12,
-              childAspectRatio: 0.7,
+              childAspectRatio: isTablet ? 0.85 : 0.7,
             ),
             itemCount: proCategories.length,
             itemBuilder: (context, index) {
@@ -1253,8 +1264,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: isTablet ? 80 : 60,
+                      height: isTablet ? 80 : 60,
                       decoration: BoxDecoration(
                         color: isDark ? Colors.white.withOpacity(0.05) : Colors.white,
                         borderRadius: BorderRadius.circular(16),
@@ -1283,7 +1294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         color: theme.textTheme.titleMedium?.color,
                         fontWeight: FontWeight.w700,
-                        fontSize: 10,
+                        fontSize: isTablet ? 12 : 10,
                         height: 1.1,
                       ),
                     ),

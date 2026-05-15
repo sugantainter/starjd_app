@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Starjd App</string>
+	<string>StarJD</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -89,11 +89,13 @@
 	<key>GIDClientID</key>
 	<string>962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe.apps.googleusercontent.com</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to the camera to take profile and cover photos.</string>
+	<string>StarJD requires camera access to allow you to capture and upload profile photos and post content directly.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to your photo library to select photos for posts and profile.</string>
+	<string>StarJD requires access to your photo library to let you select and upload images for your profile and campaign posts.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs access to the microphone to record videos.</string>
+	<string>StarJD requires microphone access to record audio when capturing videos for your content.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>upi</string>
@@ -101,5 +103,7 @@
 		<string>phonepe</string>
 		<string>paytmmp</string>
 	</array>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>StarJD uses your data to provide personalized campaign recommendations and improve your influencer marketing experience.</string>
 </dict>
 </plist>

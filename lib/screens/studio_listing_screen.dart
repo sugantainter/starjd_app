@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../models/studio.dart';
 import '../services/studio_service.dart';
 import 'studio_detail_screen.dart';
+import '../widgets/responsive_wrapper.dart';
 
 class StudioListingScreen extends StatefulWidget {
   const StudioListingScreen({super.key});
@@ -187,19 +188,38 @@ class _StudioListingScreenState extends State<StudioListingScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isTablet = MediaQuery.of(context).size.width > 600;
+    
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: SafeArea(
-        child: Column(
+      body: ResponsiveWrapper(
+        child: SafeArea(
+          child: Column(
           children: [
             _buildHeader(),
             _buildSearchBar(),
             _buildCategoryChips(),
             Divider(height: 1, color: theme.dividerColor.withOpacity(0.1)),
-            Expanded(child: _buildBody()),
+            Expanded(
+              child: isTablet 
+                ? GridView.builder(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.all(16),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      childAspectRatio: 1.2,
+                    ),
+                    itemCount: _studios.length,
+                    itemBuilder: (_, i) => _buildStudioCard(_studios[i]),
+                  )
+                : _buildBody(),
+            ),
           ],
         ),
       ),
+    ),
     );
   }
 

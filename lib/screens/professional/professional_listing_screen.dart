@@ -5,6 +5,7 @@ import '../../models/professional_gig.dart';
 import '../../services/professional_service.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'gig_detail_screen.dart';
+import '../../widgets/responsive_wrapper.dart';
 
 class ProfessionalListingScreen extends StatefulWidget {
   final String? initialQuery;
@@ -127,21 +128,23 @@ class _ProfessionalListingScreenState extends State<ProfessionalListingScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: const Text('Professional Marketplace', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        foregroundColor: theme.textTheme.titleLarge?.color,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.sort_rounded),
-            onPressed: _showSortSheet,
-          ),
-          const SizedBox(width: 8),
-        ],
-      ),
-      body: Column(
-        children: [
+      body: ResponsiveWrapper(
+        child: Column(
+          children: [
+            // AppBar
+            AppBar(
+              title: const Text('Professional Marketplace', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              foregroundColor: theme.textTheme.titleLarge?.color,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.sort_rounded),
+                  onPressed: _showSortSheet,
+                ),
+                const SizedBox(width: 8),
+              ],
+            ),
           // Search Bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
@@ -222,21 +225,23 @@ class _ProfessionalListingScreenState extends State<ProfessionalListingScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
   Widget _buildGigsGrid() {
+    final isTablet = MediaQuery.of(context).size.width > 600;
     return RefreshIndicator(
       color: const Color(0xFFE63946),
       onRefresh: () => _loadGigs(refresh: true),
       child: GridView.builder(
         controller: _scrollController,
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: isTablet ? 3 : 2,
           mainAxisSpacing: 18,
           crossAxisSpacing: 18,
-          childAspectRatio: 0.72,
+          childAspectRatio: isTablet ? 0.85 : 0.72,
         ),
         itemCount: _gigs.length + (_isLoadingMore ? 2 : 0),
         itemBuilder: (context, index) {

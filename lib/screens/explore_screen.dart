@@ -7,6 +7,7 @@ import '../services/analytics_service.dart';
 import 'notifications_screen.dart';
 import '../providers/notification_provider.dart';
 import 'package:provider/provider.dart';
+import '../widgets/responsive_wrapper.dart';
 
 class ExploreScreen extends StatefulWidget {
   final String? initialQuery;
@@ -366,8 +367,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: SafeArea(
-        child: Column(
+      body: ResponsiveWrapper(
+        child: SafeArea(
+          child: Column(
           children: [
             // Header
             Container(
@@ -577,6 +579,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           ],
         ),
       ),
+    ),
     );
   }
 
@@ -610,6 +613,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   Widget _buildBody() {
+    final isTablet = MediaQuery.of(context).size.width > 600;
+    if (_isLoading) return _buildSkeletonGrid();
     if (_isLoading) return _buildSkeletonGrid();
     if (_error != null) return _buildError();
     if (_creators.isEmpty) return _buildEmpty();
@@ -621,11 +626,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
         controller: _scrollController,
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
         itemCount: _creators.length + (_isLoadingMore ? 2 : 0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: isTablet ? 3 : 2,
           mainAxisSpacing: 14,
           crossAxisSpacing: 14,
-          childAspectRatio: 0.62,
+          childAspectRatio: isTablet ? 0.75 : 0.62,
         ),
         itemBuilder: (context, i) {
           if (i >= _creators.length) return _skeletonCard();

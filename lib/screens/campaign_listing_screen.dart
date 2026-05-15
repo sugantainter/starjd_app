@@ -4,6 +4,7 @@ import '../services/campaign_service.dart';
 import 'campaign_detail_screen.dart';
 import '../env/env.dart';
 import '../widgets/starjd_loader.dart';
+import '../widgets/responsive_wrapper.dart';
 
 class CampaignListingScreen extends StatefulWidget {
   const CampaignListingScreen({super.key});
@@ -117,15 +118,9 @@ class _CampaignListingScreenState extends State<CampaignListingScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        title: const Text('Campaigns', style: TextStyle(fontWeight: FontWeight.w800)),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: theme.appBarTheme.backgroundColor,
-        foregroundColor: theme.appBarTheme.foregroundColor,
-      ),
-      body: Column(
-        children: [
+      body: ResponsiveWrapper(
+        child: Column(
+          children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
@@ -149,6 +144,7 @@ class _CampaignListingScreenState extends State<CampaignListingScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 
