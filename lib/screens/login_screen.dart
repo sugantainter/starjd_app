@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (provider == 'google') {
         final GoogleSignIn googleSignIn = GoogleSignIn(
           scopes: ['email', 'profile'],
-          serverClientId: '962027557216-333bnbm5cr28qtjn3i17fmoonuen0qru.apps.googleusercontent.com',
+          serverClientId: '962027557216-jhobku5un7inljd9njgo2pipqvhmo526.apps.googleusercontent.com',
         );
         final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
         

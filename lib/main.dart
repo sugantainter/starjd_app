@@ -108,6 +108,9 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AnalyticsService.requestATT();
+    });
     _checkStatus();
   }
 

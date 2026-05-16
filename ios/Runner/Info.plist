@@ -82,12 +82,12 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb941585045192826</string>
-				<string>com.googleusercontent.apps.962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe</string>
+				<string>com.googleusercontent.apps.962027557216-jhobku5un7inljd9njgo2pipqvhmo526</string>
 			</array>
 		</dict>
 	</array>
 	<key>GIDClientID</key>
-	<string>962027557216-lkqktpa19ljruna5jvcc0oginv8mrbbe.apps.googleusercontent.com</string>
+	<string>962027557216-jhobku5un7inljd9njgo2pipqvhmo526.apps.googleusercontent.com</string>
 	<key>NSCameraUsageDescription</key>
 	<string>StarJD requires camera access to allow you to capture and upload profile photos and post content directly.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
