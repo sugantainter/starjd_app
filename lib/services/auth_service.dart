@@ -31,8 +31,15 @@ class AuthService {
       },
     ));
 
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String appDocPath = appDocDir.path;
+    String appDocPath;
+    try {
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      appDocPath = appDocDir.path;
+    } catch (e) {
+      // Fallback for iOS 18 simulator FFI bugs where path_provider crashes
+      appDocPath = Directory.systemTemp.path;
+    }
+    
     _cookieJar = PersistCookieJar(
       storage: FileStorage("$appDocPath/.cookies/"),
       ignoreExpires: true,

@@ -175,6 +175,9 @@ class _SignupScreenState extends State<SignupScreen> {
     } catch (e) {
       if (mounted) {
         setState(() { _isLoading = false; });
+        if (e is SignInWithAppleAuthorizationException && e.code == AuthorizationErrorCode.canceled) {
+          return; // User cancelled — no error needed
+        }
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     }

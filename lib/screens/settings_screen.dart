@@ -317,7 +317,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: theme.dialogBackgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text('Delete Account', style: TextStyle(fontWeight: FontWeight.bold, color: theme.textTheme.titleLarge?.color)),
@@ -327,12 +327,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogContext),
             child: Text('Cancel', style: TextStyle(color: isDark ? Colors.white30 : Colors.grey.shade600)),
           ),
           ElevatedButton(
             onPressed: () async {
-              Navigator.pop(context);
+              Navigator.pop(dialogContext);
               _handleDeleteAccount(context);
             },
             style: ElevatedButton.styleFrom(
@@ -348,17 +348,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _handleDeleteAccount(BuildContext context) async {
+    BuildContext? loadingContext;
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (dialogContext) => const Center(child: CircularProgressIndicator()),
+      builder: (ctx) {
+        loadingContext = ctx;
+        return const Center(child: CircularProgressIndicator());
+      },
     );
 
     final result = await AuthService.deleteAccount();
     
+    if (loadingContext != null && loadingContext!.mounted) {
+      Navigator.of(loadingContext!).pop(); // Pop loading dialog
+    } else if (context.mounted) {
+      Navigator.of(context, rootNavigator: true).pop(); // Fallback pop
+    }
+    
     if (context.mounted) {
-      Navigator.of(context, rootNavigator: true).pop(); // Pop loading dialog
-      
       if (result['success']) {
         Navigator.pushAndRemoveUntil(
           context,
