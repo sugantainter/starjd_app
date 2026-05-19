@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
+import '../services/auth_service.dart';
+import 'login_screen.dart';
 import '../services/chat_service.dart';
 import '../services/notification_service.dart';
 import 'chat_screen.dart';
@@ -27,9 +29,25 @@ class _MessagesScreenState extends State<MessagesScreen> {
   StreamSubscription? _messageSubscription;
   Timer? _pollingTimer;
 
+  bool _isGuest = false;
+
   @override
   void initState() {
     super.initState();
+    _checkGuestStatus();
+  }
+
+  Future<void> _checkGuestStatus() async {
+    final user = await AuthService.getUser();
+    if (user == null) {
+      if (mounted) {
+        setState(() {
+          _isGuest = true;
+          _isLoading = false;
+        });
+      }
+      return;
+    }
     _loadConversations();
     _startMessageListener();
     _startPolling();
@@ -141,6 +159,51 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
     if (_isLoading) {
       return const StarJDLoader();
+    }
+
+    if (_isGuest) {
+      return Scaffold(
+        backgroundColor: theme.scaffoldBackgroundColor,
+        appBar: AppBar(
+          title: const Text('Messages', style: TextStyle(fontWeight: FontWeight.bold)),
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.chat_bubble_outline, size: 64, color: isDark ? Colors.white24 : const Color(0xFF9CA3AF)),
+              const SizedBox(height: 16),
+              Text(
+                'Log in to view messages',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: theme.textTheme.titleLarge?.color,
+                ),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    (route) => false,
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFE63946),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: const Text('Log In / Register', style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+            ],
+          ),
+        ),
+      );
     }
 
     return Scaffold(

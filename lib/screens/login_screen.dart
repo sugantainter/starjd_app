@@ -200,6 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (e) {
       if (mounted) {
         setState(() { _isLoading = false; });
+        if (e is SignInWithAppleAuthorizationException && e.code == AuthorizationErrorCode.canceled) {
+          return; // User cancelled — no error needed
+        }
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     }
@@ -406,24 +409,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () => _handleSocialLogin('facebook'),
-                        icon: const Icon(Icons.facebook, color: Colors.blue),
-                        label: Text(
-                          'Facebook',
-                          style: TextStyle(color: theme.textTheme.bodyLarge?.color, fontWeight: FontWeight.bold),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          side: BorderSide(color: isDark ? Colors.white10 : const Color(0xFFE5E7EB)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                    if (!Platform.isIOS) const SizedBox(width: 16),
+                    if (!Platform.isIOS)
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () => _handleSocialLogin('facebook'),
+                          icon: const Icon(Icons.facebook, color: Colors.blue),
+                          label: Text(
+                            'Facebook',
+                            style: TextStyle(color: theme.textTheme.bodyLarge?.color, fontWeight: FontWeight.bold),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            side: BorderSide(color: isDark ? Colors.white10 : const Color(0xFFE5E7EB)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 ),
                 

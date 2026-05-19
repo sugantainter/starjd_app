@@ -351,13 +351,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
+      builder: (dialogContext) => const Center(child: CircularProgressIndicator()),
     );
 
     final result = await AuthService.deleteAccount();
     
     if (context.mounted) {
-      Navigator.pop(context); // Pop loading dialog
+      Navigator.of(context, rootNavigator: true).pop(); // Pop loading dialog
       
       if (result['success']) {
         Navigator.pushAndRemoveUntil(

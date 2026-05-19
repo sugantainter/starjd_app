@@ -384,24 +384,25 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () => _handleSocialSignup('facebook'),
-                      icon: const Icon(Icons.facebook, color: Colors.blue),
-                      label: Text(
-                        'Facebook',
-                        style: TextStyle(color: theme.textTheme.bodyLarge?.color, fontWeight: FontWeight.bold),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        side: BorderSide(color: isDark ? Colors.white10 : const Color(0xFFE5E7EB)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  if (!Platform.isIOS) const SizedBox(width: 16),
+                  if (!Platform.isIOS)
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () => _handleSocialSignup('facebook'),
+                        icon: const Icon(Icons.facebook, color: Colors.blue),
+                        label: Text(
+                          'Facebook',
+                          style: TextStyle(color: theme.textTheme.bodyLarge?.color, fontWeight: FontWeight.bold),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          side: BorderSide(color: isDark ? Colors.white10 : const Color(0xFFE5E7EB)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
               

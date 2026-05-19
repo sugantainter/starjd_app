@@ -260,6 +260,8 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
                   onPressed: _isLoading ? null : _handleContinue,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE63946),
+                    disabledBackgroundColor: const Color(0xFFE5E7EB),
+                    disabledForegroundColor: const Color(0xFF9CA3AF),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 18),
                     shape: RoundedRectangleBorder(

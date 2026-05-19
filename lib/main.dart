@@ -180,7 +180,7 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        MaterialPageRoute(builder: (context) => const MainLayout()),
       );
     }
   }
